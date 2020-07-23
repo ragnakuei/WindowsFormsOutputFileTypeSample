@@ -35,8 +35,11 @@ namespace WindowsFormsApp
 
         private void OutputFileType(object sender, EventArgs e)
         {
-            var target = (sender as Button)?.Tag as OutputFileMapDTO;
-            OutputFile(target);
+            if (sender is Button btn
+             && btn.Tag is OutputFileMapDTO target)
+            {
+                OutputFile(target);
+            }
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
