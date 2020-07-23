@@ -53,6 +53,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateFile\GenerateCsvFile.cs" />
+    <Compile Include="GenerateFile\GenerateFileFactory.cs" />
+    <Compile Include="GenerateFile\GenerateJsonFile.cs" />
+    <Compile Include="GenerateFile\GenerateTxtFile.cs" />
+    <Compile Include="GenerateFile\GenerateXmlFile.cs" />
+    <Compile Include="GenerateFile\IGenerateFile.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="OutputFileMapDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

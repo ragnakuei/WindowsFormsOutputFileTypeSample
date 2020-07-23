@@ -9,7 +9,5 @@ namespace WindowsFormsApp
 
 
         public FileType FileType { get; internal set; }
-
-        public Func<string> GetValueAction { get; set; }
     }
 }

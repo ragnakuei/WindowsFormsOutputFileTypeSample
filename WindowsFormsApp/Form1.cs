@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp.GenerateFile;
 
 namespace WindowsFormsApp
 {
@@ -18,13 +19,12 @@ namespace WindowsFormsApp
 
             var outputFileBtnMap = new OutputFileMapDTO[]
                                    {
-                                       new OutputFileMapDTO { Button = btnTxt, FileType  = FileType.Txt, GetValueAction  = GenerateTxt },
-                                       new OutputFileMapDTO { Button = btnCsv, FileType  = FileType.Csv, GetValueAction  = GenerateCsv },
-                                       new OutputFileMapDTO { Button = btnXml, FileType  = FileType.Xml, GetValueAction  = GenerateXml },
-                                       new OutputFileMapDTO { Button = btnJson, FileType = FileType.Json, GetValueAction = GenerateJson },
+                                       new OutputFileMapDTO { Button = btnTxt, FileType  = FileType.Txt },
+                                       new OutputFileMapDTO { Button = btnCsv, FileType  = FileType.Csv },
+                                       new OutputFileMapDTO { Button = btnXml, FileType  = FileType.Xml },
+                                       new OutputFileMapDTO { Button = btnJson, FileType = FileType.Json },
                                    };
             cbxOutputFiles.DisplayMember = nameof(OutputFileMapDTO.FileType);
-            cbxOutputFiles.ValueMember   = nameof(OutputFileMapDTO.GetValueAction);
 
             foreach (var outputFileMapDto in outputFileBtnMap)
             {
@@ -50,28 +50,9 @@ namespace WindowsFormsApp
 
         private static void OutputFile(OutputFileMapDTO target)
         {
-            var targetFileType = target.GetValueAction.Invoke();
+            var generateFile   = new GenerateFileFactory().Create(target.FileType);
+            var targetFileType = generateFile.Generate();
             MessageBox.Show(targetFileType);
-        }
-
-        private string GenerateTxt()
-        {
-            return "txt";
-        }
-
-        private string GenerateCsv()
-        {
-            return "csv";
-        }
-
-        private string GenerateXml()
-        {
-            return "xml";
-        }
-
-        private string GenerateJson()
-        {
-            return "json";
         }
     }
 }
